@@ -11,6 +11,7 @@
 		4F138F6A28EEB6BC005AA203 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F138F6928EEB6BC005AA203 /* ContentView.swift */; };
 		4F138F6C28EEB6BE005AA203 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F138F6B28EEB6BE005AA203 /* Assets.xcassets */; };
 		4F138F7028EEB6BE005AA203 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F138F6F28EEB6BE005AA203 /* Preview Assets.xcassets */; };
+		4F138F7728EEB9EF005AA203 /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F138F7628EEB9EF005AA203 /* ChartData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		4F138F6B28EEB6BE005AA203 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4F138F6D28EEB6BE005AA203 /* ChartsSample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ChartsSample.entitlements; sourceTree = "<group>"; };
 		4F138F6F28EEB6BE005AA203 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4F138F7628EEB9EF005AA203 /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				4F138F6B28EEB6BE005AA203 /* Assets.xcassets */,
 				4F138F6D28EEB6BE005AA203 /* ChartsSample.entitlements */,
 				4F138F6E28EEB6BE005AA203 /* Preview Content */,
+				4F138F7628EEB9EF005AA203 /* ChartData.swift */,
 			);
 			path = ChartsSample;
 			sourceTree = "<group>";
@@ -140,6 +143,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F138F6A28EEB6BC005AA203 /* ContentView.swift in Sources */,
+				4F138F7728EEB9EF005AA203 /* ChartData.swift in Sources */,
 				4F138F6828EEB6BC005AA203 /* ChartsSampleApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,7 +289,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.assaulter.ChartsSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -321,7 +327,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.assaulter.ChartsSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
