@@ -17,54 +17,76 @@ struct ContentView: View {
             .map{ $0.weight }
             .reduce(.zero, +) / Float(weights.count)
     }
-    private var yStart: Float {
-        return 50.0 // ほんとは計算した値を返す
-    }
     
     var body: some View {
         List {
-            VStack(alignment: .leading) {
-                Text("Charts Sample")
-                    .font(.largeTitle)
-                    .foregroundStyle(.primary)
-                
-                Chart {
-                    // 棒グラフ
-                    ForEach(weights) { val in
-//                        BarMark(
-//                            x: .value("Date", val.date),
-//                            y: .value("Weight", val.weight),
-//                            width: .ratio(0.3) // 0.0~1.0でいい感じに表示される
-//                        )
-                        BarMark(
-                            x: .value("Date", val.date),
-                            yStart: .value("Weight", yStart),
-                            yEnd: .value("Weight", val.weight),
-                            width: .ratio(0.3) // 0.0~1.0でいい感じに表示される
-                        )
-                    }
-//                    ForEach(fats) { val in
-//                        LineMark(
-//                            x: .value("Date", val.date),
-//                            y: .value("Fat", val.fat)
-//                        )
-//                    }
-                    // 縦 or 横に単一の線を引く
-                    RuleMark(y: .value("Average", average))
-                        .foregroundStyle(.orange)
-                        .annotation(position: .top, alignment: .leading) {
-                            Text("Average: \(String(format: "%.1f", average))kg")
-                                .font(.headline)
-                                .foregroundColor(.orange)
+            Section {
+                // Weight Cart
+                VStack(alignment: .leading) {
+                    Text("Weight Chart")
+                        .font(.largeTitle)
+                        .foregroundStyle(.primary)
+                    
+                    Chart {
+                        ForEach(weights) { val in
+                            BarMark(
+                                x: .value("Date", val.date),
+                                yStart: .value("Weight", 50.0),
+                                yEnd: .value("Weight", val.weight),
+                                width: .ratio(0.3) // 0.0~1.0で幅の調整ができる。
+                            )
                         }
+                        // 縦 or 横に単一の線を引く
+                        RuleMark(y: .value("Average", average))
+                            .foregroundStyle(.orange)
+                    }
+                    .chartYAxis {
+                        AxisMarks { value in
+                            AxisGridLine() // 消したら横線が消える
+                            AxisValueLabel {
+                                if let val = value.as(Int.self) {
+                                    Text("\(val)kg")
+                                }
+                            }
+                        }
+                    }
+                    .chartYScale(domain: 50.0...57.0) // 描画範囲を指定
+                    .frame(height: 140.0)
                 }
-//                .chartYScale(range: .plotDimension(startPadding: 20.0, endPadding: 0.0)) // start: 下部, end: 上部のパディング
-                .chartYScale(domain: yStart...58.0)
-                .frame(height: 240.0)
             }
-            .listRowSeparator(.hidden)
+            Section {
+                // Fat Chart
+                VStack(alignment: .leading) {
+                    Text("Fat Chart")
+                        .font(.largeTitle)
+                        .foregroundStyle(.primary)
+                    Chart {
+                        ForEach(fats) { val in
+                            LineMark(
+                                x: .value("Date", val.date),
+                                y: .value("Fat", val.fat)
+                            )
+                        }
+                        .symbol(by: .value("Type", "Fat"))
+                        .interpolationMethod(.catmullRom)
+                    }
+                    .chartYAxis {
+                        AxisMarks { value in
+                            AxisGridLine() // 消したら横線が消える
+                            AxisValueLabel {
+                                if let val = value.as(Int.self) {
+                                    Text("\(val)%")
+                                }
+                            }
+                        }
+                    }
+                    .chartLegend(.hidden)
+                    .chartYScale(domain: 15.0...25.0)
+                    .frame(height: 140.0)
+                }
+            }
         }
-        .listStyle(.plain)
+        .listStyle(.insetGrouped)
     }
 }
 
